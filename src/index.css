@@ -1,13 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,700;1,600&display=swap");
+:root {
+  --dark-text: hsl(229, 25%, 31%);
+  --score-text: hsl(229, 64%, 46%);
+  --header-outline: hsl(217, 16%, 45%);
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 1366px;
+
+  background: radial-gradient(hsl(214, 47%, 25%), hsl(237, 49%, 15%));
+  background-repeat: no-repeat;
+  background-size: 100% 150%;
+  font-family: "Barlow Semi Condensed", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+  text-align: center;
+}
+
+header {
+  border: solid var(--header-outline);
+  color: white;
+  width: 80vw;
+  margin: 2em auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  border-radius: 0.4em;
+}
+
+.score_container {
+  border: solid white;
+  width: 7em;
+  border-radius: 0.5em;
+  background-color: white;
+}
+
+.logo_container {
+  margin: 0;
+}
+
+.logo_container img {
+  width: 80%;
+}
+.score {
+  color: hsl(229, 25%, 31%);
+  font-size: 2.5em;
+}
+.score_container p {
+  margin: 0.2em;
+}
+.title_score {
+  color: hsl(229, 64%, 46%);
+}
+
+main {
+  height: 375px;
+  width: 60%;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: 1fr 1fr;
+  color: white;
+}
+
+.hand {
+  border-radius: 10em;
+  width: 9em;
+  height: 9em;
+  margin: 0 auto;
+  position: relative;
+  border: solid 1em;
+  background-color: transparent;
+  cursor: pointer;
+}
+.hand::before {
+  content: "";
+  background-color: red;
+  border: solid hsl(217, 16%, 45%) 1em;
+  border-radius: 50%;
+  position: absolute;
+  right: -14%;
+  bottom: -18px;
+  width: 7em;
+  height: 7em;
+  z-index: -1;
+  background-color: white;
+}
+.paper_hand {
+  border-color: hsl(230, 89%, 62%);
+  box-shadow: 0 7px 1px hsl(230, 89%, 55%);
+  background-image: url("images/icon-paper.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.scissors_hand {
+  border-color: hsl(40, 84%, 53%);
+  box-shadow: 0 7px 1px hsl(39, 89%, 39%);
+  background-image: url("images/icon-scissors.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  left: 50%;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.rock_hand {
+  border-color: hsl(349, 71%, 52%);
+  box-shadow: 0 7px 1px hsl(349, 70%, 36%);
+
+  background-image: url("images/icon-rock.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.winlose {
+  text-align: center;
+  margin: auto;
+  position: relative;
+  left: 50%;
+}
+.winlose p {
+  text-align: center;
+  margin: auto;
+  font-size: 3em;
+}
+
+.winlose button {
+  margin: auto;
+  font-size: 1.2em;
+  padding: 0.5em 3.5em;
+  color: hsl(217, 16%, 45%);
+  border-radius: 0.4em;
+  border: none;
+  margin-top: 0.5em;
+  cursor: pointer;
+}
+
+footer {
+  color: white;
+  position: relative;
+  top: 100px;
+  bottom: 50px;
+  width: 99%;
+  padding-bottom: 2em;
+}
+
+footer .rules {
+  font-size: 1.5em;
+  width: 150px;
+  height: 40px;
+  background-color: transparent;
+  border: solid hsl(217, 16%, 45%);
+  border-radius: 0.4em;
+  color: hsl(217, 16%, 85%);
+  cursor: pointer;
+  margin: 1em;
+}
+footer .rules_modal_show {
+  z-index: 20;
+  position: fixed;
+  width: 99%;
+  height: 100%;
+  overflow: auto;
+  top: -15px;
+  left: -40px;
+  background-image: url("images/image-rules.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  align-items: center;
+  opacity: 1;
+  border-radius: 0.5em;
+}
+
+footer .rules_modal_show p {
+  color: black;
+  align-items: center;
+  vertical-align: middle;
+  font-size: 2em;
+  display: flex;
+  justify-content: space-around;
+}
+
+footer .rules_modal_show p .close {
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+footer .rules_modal {
+  display: none;
+  opacity: 1;
+  transition: all 1s;
+}
+@media screen and (min-width: 900px) {
+  header {
+    width: 40vw;
+  }
+  footer .rules_modal_show {
+    width: 40%;
+    height: 60%;
+    margin: o auto;
+    left: 26%;
+    top: 15%;
+    background-size: 50%;
+    background-position: center 70%;
+  }
+
+  .hand {
+    width: 9.5em;
+    height: 9.5em;
+    background-size: 60%;
+  }
+  .hand::before {
+    content: "";
+    right: -10%;
+    bottom: -11px;
+    width: 9.5em - 2;
+    height: 9.5em - 2;
+    z-index: -1;
+    background-color: white;
+  }
+
+  footer .rules_modal_show p {
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  main {
+    width: 100%;
+  }
 }
